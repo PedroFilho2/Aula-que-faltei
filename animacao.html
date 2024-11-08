@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>   
+    <style>
+        .box {
+            width: 250px;
+            height: 250px;
+            border: 2px solid #e11b1b;
+            background-color: rgb(255, 255, 255);
+            animation: revelar .5s infinite;
+        }
+        .menino {
+            background-color: rgb(0, 12, 181);
+            animation: none;
+        }
+        .menina {
+            background-color: rgb(213, 137, 137);
+            animation: none;
+        }
+        @keyframes revelar  {
+            from {
+                background-color: pink;
+            } 
+            to {
+                background-color: blue;
+            }
+        }
+    </style>    
+</head>
+<body>
+    <div class="box"></div>
+    <button class="btn">Menino ou Menina</button>
+    <script>
+        var btn = document.querySelector(".btn")
+        btn.addEventListener("click", () => {
+            const revelando = document.querySelector(".box")
+            revelando.classList.remove()
+            revelando.classList.add("menino")
+        })
+    </script>
+</body>
+</html>
