@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        @font-face {
+            font-family: 'Calculator';
+            src: url('Calculator.ttf') format('truetype');
+        }
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #666;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculadora {
+            padding: 16px;
+            background-color: aliceblue;
+        }
+        button {
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            margin: 2px 0;
+            border-radius: 8px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .visor input {
+            color: black;
+            text-align: right;
+            font-family: Calculator;
+            font-size: 26px;
+            font-weight: bold;
+            border-radius: 2px;
+            width: 100%;
+            height: 40px;
+            margin-bottom: 4px;
+            background-color: rgb(80, 107, 80);
+        } 
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <div class="visor">
+            <input type="text" name="resultado" id="resultado" disabled>
+        </div>
+        <div class="botoes">
+            <div>
+                <button onclick="add(7)">7</button>
+                <button onclick="add(8)">8</button>
+                <button onclick="add(9)">9</button>
+                <button onclick="operador('/')">/</button>
+            </div>
+            <div>
+                <button onclick="add(4)">4</button>
+                <button onclick="add(5)">5</button>
+                <button onclick="add(6)">6</button>
+                <button onclick="operador('-')">-</button>
+            </div>
+            <div>
+                <button onclick="add(1)">1</button>
+                <button onclick="add(2)">2</button>
+                <button onclick="add(3)">3</button>
+                <button onclick="operador('x')">x</button>
+            </div>
+            <div>
+                <button onclick="calcular()">=</button>
+                <button onclick="add(0)">0</button>
+                <button onclick="limpar()"><-</button>
+                <button onclick="operador('+')">+</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        visor = document.querySelector("#resultado");
+        operacao = null
+        valor = null
+
+        function add(numero) {
+            visor.value += numero;
+        }
+
+        function operador(operador){
+            operacao = operador
+            valor = visor.value
+            visor.value = ""
+        }
+
+        function limpar(){
+            visor.value = visor.value.substr(0,visor.value.length - 1)
+        }
+
+        function calcular(){
+
+            switch (operacao) {
+                case "+":
+                    op = eval(valor) + eval(visor.value)
+                    visor.value = op
+                    break
+                case "-":
+                    op = eval(valor) - eval(visor.value)
+                    visor.value = op
+                    break
+                case "x":
+                    op = eval(valor) * eval(visor.value)
+                    visor.value = op
+                    break
+                case "/":
+                op = eval(valor) / eval(visor.value)
+                visor.value = op
+                break
+            }
+
+        }
+
+    </script>
+</body>
+</html>

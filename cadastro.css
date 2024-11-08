@@ -1,0 +1,36 @@
+body {
+    background-color: white;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.form {
+    width: 400px;
+    height: auto;
+}
+button {
+    width: 100%;
+    height: 40px;
+    font-size: 22px;
+    font-weight: 900;
+    background-color: #ddd;
+    border: 2px dotted #000;
+    border-radius: 8px;
+}
+button:hover {
+    background-color: #646464;
+    border: 2px solid #000;
+    color: white;
+}
+.dados_usuario, .dados_endereco {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 6px;
+    background-color: #ddd;
+}

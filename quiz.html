@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Quiz de Conhecimentos Gerais</title>
+    <script src="./confetti.min.js"></script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.question {
+    margin: 15px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz de Conhecimentos Gerais</h1>
+        <div id="quiz"></div>
+        <button id="submit">Enviar Respostas</button>
+        <div id="result" class="hidden"></div>
+    </div>
+    <script>
+        const quizData = {
+    perguntas: [
+        {
+            pergunta: "Qual é a capital da França?",
+            opcoes: ["Londres", "Paris", "Berlim", "Madri"],
+            resposta: "Paris"
+        },
+        {
+            pergunta: "Quem escreveu 'Dom Casmurro'?",
+            opcoes: ["Machado de Assis", "José de Alencar", "Joaquim Manuel de Macedo", "Graciliano Ramos"],
+            resposta: "Machado de Assis"
+        },
+        {
+            pergunta: "Qual é o maior planeta do sistema solar?",
+            opcoes: ["Terra", "Júpiter", "Marte", "Saturno"],
+            resposta: "Júpiter"
+        },
+        {
+            pergunta: "Em que ano aconteceu a independência do Brasil?",
+            opcoes: ["1889", "1822", "1500", "1930"],
+            resposta: "1822"
+        },
+        {
+            pergunta: "Qual é o elemento químico com o símbolo O?",
+            opcoes: ["Ouro", "Oxigênio", "Ósmio", "Ozônio"],
+            resposta: "Oxigênio"
+        },
+        {
+            pergunta: "Quem pintou a Mona Lisa?",
+            opcoes: ["Pablo Picasso", "Vincent van Gogh", "Leonardo da Vinci", "Claude Monet"],
+            resposta: "Leonardo da Vinci"
+        },
+        {
+            pergunta: "Qual é a língua mais falada do mundo?",
+            opcoes: ["Espanhol", "Inglês", "Mandarim", "Árabe"],
+            resposta: "Mandarim"
+        },
+        {
+            pergunta: "Qual é a montanha mais alta do mundo?",
+            opcoes: ["K2", "Monte Everest", "Kilimanjaro", "Makalu"],
+            resposta: "Monte Everest"
+        },
+        {
+            pergunta: "Quem foi o primeiro presidente dos Estados Unidos?",
+            opcoes: ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"],
+            resposta: "George Washington"
+        },
+        {
+            pergunta: "Qual é o continente conhecido como 'berço da civilização'?",
+            opcoes: ["África", "Ásia", "Europa", "América"],
+            resposta: "África"
+        }
+    ]
+};
+
+const quizContainer = document.getElementById('quiz');
+const submitButton = document.getElementById('submit');
+const resultContainer = document.getElementById('result');
+
+function loadQuiz() {
+    quizData.perguntas.forEach((questao, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        questionElement.innerHTML = `
+            <h3>${index + 1}. ${questao.pergunta}</h3>
+            ${questao.opcoes.map((opcao, i) => `
+                <label>
+                    <input type="radio" name="question${index}" value="${opcao}">
+                    ${opcao}
+                </label>
+            `).join('')}
+        `;
+        quizContainer.appendChild(questionElement);
+    }); 
+}
+
+function showResult() {
+    let score = 0;
+    quizData.perguntas.forEach((questao, index) => {
+        const selected = document.querySelector(`input[name="question${index}"]:checked`);
+        if (selected && selected.value === questao.resposta) {
+            score++;
+        }
+    });
+
+    if(score === 10){
+        let confetti = new Confetti('demo');
+
+        // Edit given parameters
+        confetti.setCount(75);
+        confetti.setSize(1);
+        confetti.setPower(25);
+        confetti.setFade(false);
+        confetti.destroyTarget(true);
+    }
+
+    resultContainer.innerHTML = `Você acertou ${score} de ${quizData.perguntas.length} perguntas.`;
+    resultContainer.classList.remove('hidden');
+}
+
+submitButton.addEventListener('click', showResult);
+
+loadQuiz();
+
+    </script>
+</body>
+</html>

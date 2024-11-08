@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+</head>
+<body>
+    <h1>Javascript</h1>
+    <label for="peso">Peso</label>
+    <input 
+        type="number" 
+        placeholder="Digite seu peso" 
+        name="peso" 
+        id="peso"
+    >
+
+    <label for="altura">Altura</label>
+    <input 
+        type="number" 
+        placeholder="Digite sua altura" 
+        name="altura" 
+        id="altura"
+    >
+    <button onclick="imc()" id="enviar">Calcular IMC</button>
+<script>
+
+function imc(){
+        //pegando o valor do campo Peso (input)
+        let peso = document.querySelector("#peso").value
+        let altura = document.querySelector("#altura").value
+        let imc = peso / (altura * altura)
+        alert("Seu IMC:" + imc.toFixed(2))
+}
+
+    function exibir(){
+        //pegando o valor do campo Peso (input)
+        let peso = document.querySelector("#peso").value
+        let altura = document.querySelector("#altura").value
+        alert("Olá, seja Bem vindo " + Nome)
+    }
+</script>
+</body>
+</html>
